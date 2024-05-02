@@ -17,11 +17,49 @@
         padding: 0;
         width: 100%;
         height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
         background-size: cover;
         background-position: center;
         transition: background-image 0.5s ease-in-out;
         
         }
+
+        
+     
+        #homeValue {
+    color: white;
+    font-weight: bold;
+}
+
+
+#downPayment {
+    color: white;
+    font-weight: bold;
+    font-size: 'large';
+}
+
+
+#loanAmount {
+    color: white;
+    font-weight: bold;
+    font-size: 'large';
+}
+
+
+#interestRate{
+    color: white;
+    font-weight: bold;
+    font-size: 'large';
+}
+
+
+#loanDuration{
+    color: white;
+    font-weight: bold;
+    font-size: 'large';
+}
+       
+
         .custom-form {
           max-width: 600px;
           margin: 0 auto;
@@ -47,6 +85,9 @@
             max-width: 300px;
           }
         }
+
+  
+
         </style>
 
     <!-- Compiled and minified JavaScript -->
@@ -63,27 +104,27 @@
 <main class="row mx-5">
     <div class="input-field" >
     <input type="number"  class="autocomplete" id="homeValue">
-     <label style="font-size: 22px; font-weight: bold; color:black;">Home  Value</label>  
+     <label style="font-size: 22px; font-weight: bold; color:white;">Home  Value</label>  
     </div>
 
     <div class="input-field">
         <input type="number"   class="autocomplete" id="downPayment">
-        <label  style="font-size: 22px; font-weight: bold; color: black;">Down Payment</label>
+        <label  style="font-size: 24px; font-weight: bold; color: white;">Down Payment</label>
         </div>
 
         <div class="input-field">
             <input type="number"   class="autocomplete" id="loanAmount"   readonly  placeholder="loan Amount"  >
-            <label style="font-size: 22px; font-weight: bold; color: black;">Loan  Amount</label>
+            <label style="font-size: 24px; font-weight: bold; color: white;">Loan  Amount</label>
             </div>
 
             <div class="input-field">
                 <input type="text"   class="autocomplete" id="interestRate">
-                <label style="font-size: 22px; font-weight: bold; color: black;">Interest rate</label>
+                <label style="font-size: 24px; font-weight: bold; color: white;">Interest rate</label>
                 </div>
 
             <div class="input-field">
                 <input type="number"   class="autocomplete" id="loanDuration">
-                <label style="font-size: 22px; font-weight: bold; color: black;">Loan  Duration (years)</label>
+                <label style="font-size: 24px; font-weight: bold; color: white;">Loan  Duration (years)</label>
                 </div>
                 
 </main>

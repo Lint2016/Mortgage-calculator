@@ -87,8 +87,12 @@ let currentIndex = 0 ;
 //let create the function to change dynamically the background image
 
 function changeBackgroundImage(){
+
+
     document.body.style.backgroundImage = `url('${images[currentIndex]}')`;
     currentIndex = (currentIndex +1) %  images.length;
+
+  
 }
 
 // we now call the function
