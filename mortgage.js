@@ -77,9 +77,7 @@ const images =[
     'MortgagePictures/img3.jpg',
     'MortgagePictures/img4.jpg',
     'MortgagePictures/img6.jpg',
-    'MortgagePictures/img7.jpg'
-    
-    
+    'MortgagePictures/img7.jpg' 
 ]
 // this is the index to track the background image
 let currentIndex = 0 ;
