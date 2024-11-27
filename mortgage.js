@@ -31,6 +31,32 @@ const extraPayment = document.getElementById('extraPayment');
 const form = document.getElementById('mortgage');
 const resultsSection = document.querySelector('.results-section');
 const scheduleTable = document.querySelector('.schedule-table');
+const currencySelect = document.getElementById('currency');
+
+// Currency formatting function
+function formatCurrency(amount, currencyCode) {
+    const formatter = new Intl.NumberFormat(undefined, {
+        style: 'currency',
+        currency: currencyCode,
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+    });
+    return formatter.format(amount);
+}
+
+// Update all currency displays
+function updateCurrencyDisplays() {
+    const selectedCurrency = currencySelect.value;
+    
+    // Update all monetary values with new currency
+    document.querySelectorAll('.currency-value').forEach(element => {
+        const value = parseFloat(element.dataset.value || '0');
+        element.textContent = formatCurrency(value, selectedCurrency);
+    });
+}
+
+// Add currency change event listener
+currencySelect.addEventListener('change', updateCurrencyDisplays);
 
 // Calculate amortization schedule
 function calculateAmortizationSchedule(loanAmount, annualRate, years, extraPayment = 0) {
@@ -69,14 +95,6 @@ function calculateAmortizationSchedule(loanAmount, annualRate, years, extraPayme
     };
 }
 
-// Format currency
-function formatCurrency(amount) {
-    return 'ZAR ' + amount.toLocaleString(undefined, {
-        minimumFractionDigits: 2,
-        maximumFractionDigits: 2
-    });
-}
-
 // Update amortization table
 function updateAmortizationTable(schedule) {
     const tbody = document.getElementById('amortizationBody');
@@ -86,10 +104,10 @@ function updateAmortizationTable(schedule) {
         const tr = document.createElement('tr');
         tr.innerHTML = `
             <td>${row.payment}</td>
-            <td>${formatCurrency(row.totalPayment)}</td>
-            <td>${formatCurrency(row.principalPayment)}</td>
-            <td>${formatCurrency(row.interestPayment)}</td>
-            <td>${formatCurrency(row.balance)}</td>
+            <td class="currency-value" data-value="${row.totalPayment}">${formatCurrency(row.totalPayment, currencySelect.value)}</td>
+            <td class="currency-value" data-value="${row.principalPayment}">${formatCurrency(row.principalPayment, currencySelect.value)}</td>
+            <td class="currency-value" data-value="${row.interestPayment}">${formatCurrency(row.interestPayment, currencySelect.value)}</td>
+            <td class="currency-value" data-value="${row.balance}">${formatCurrency(row.balance, currencySelect.value)}</td>
         `;
         tbody.appendChild(tr);
     });
@@ -160,7 +178,10 @@ form.onsubmit = (e) => {
         
         // Calculate regular monthly payment
         const monthlyPayment = calculateMortgage(loanAmountValue, interestRate.value, loanDuration.value);
-        document.getElementById('monthlyPayment').innerHTML = formatCurrency(monthlyPayment);
+        const monthlyPaymentElement = document.getElementById('monthlyPayment');
+        monthlyPaymentElement.textContent = formatCurrency(monthlyPayment, currencySelect.value);
+        monthlyPaymentElement.dataset.value = monthlyPayment;
+        monthlyPaymentElement.className = 'currency-value';
         
         // Calculate amortization schedule
         const schedule = calculateAmortizationSchedule(
@@ -171,8 +192,15 @@ form.onsubmit = (e) => {
         );
         
         // Update summary information
-        document.getElementById('totalPayment').textContent = formatCurrency(schedule.totalPaid);
-        document.getElementById('totalInterest').textContent = formatCurrency(schedule.totalInterest);
+        const totalPaymentElement = document.getElementById('totalPayment');
+        totalPaymentElement.textContent = formatCurrency(schedule.totalPaid, currencySelect.value);
+        totalPaymentElement.dataset.value = schedule.totalPaid;
+        totalPaymentElement.className = 'currency-value';
+        
+        const totalInterestElement = document.getElementById('totalInterest');
+        totalInterestElement.textContent = formatCurrency(schedule.totalInterest, currencySelect.value);
+        totalInterestElement.dataset.value = schedule.totalInterest;
+        totalInterestElement.className = 'currency-value';
         
         // Calculate and display payoff date
         const payoffDate = new Date();
@@ -186,7 +214,10 @@ form.onsubmit = (e) => {
             parseInt(loanDuration.value)
         );
         const interestSavings = regularSchedule.totalInterest - schedule.totalInterest;
-        document.getElementById('interestSavings').textContent = formatCurrency(interestSavings);
+        const interestSavingsElement = document.getElementById('interestSavings');
+        interestSavingsElement.textContent = formatCurrency(interestSavings, currencySelect.value);
+        interestSavingsElement.dataset.value = interestSavings;
+        interestSavingsElement.className = 'currency-value';
         
         // Update amortization table
         updateAmortizationTable(schedule.schedule);

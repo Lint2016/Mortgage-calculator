@@ -34,8 +34,18 @@
                 </div>
 
                 <div class="input-field">
-                    <input type="number" id="loanAmount" readonly>
                     <label for="loanAmount">Loan Amount</label>
+                    <div class="currency-input">
+                        <select id="currency" class="currency-select">
+                            <option value="ZAR">ZAR</option>
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="GBP">GBP</option>
+                            <option value="AUD">AUD</option>
+                            <option value="CAD">CAD</option>
+                        </select>
+                        <input type="number" id="loanAmount" readonly>
+                    </div>
                 </div>
 
                 <div class="input-field">

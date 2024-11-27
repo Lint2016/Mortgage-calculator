@@ -207,6 +207,41 @@ h1 {
     font-weight: 700;
 }
 
+/* Currency Input Styling */
+.currency-input {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.currency-select {
+    padding: 0.75rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
+    background: var(--input-bg);
+    color: var(--input-text);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+    min-width: 90px;
+}
+
+.currency-select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.currency-input input {
+    flex: 1;
+}
+
+[data-theme="dark"] .currency-select {
+    background: var(--input-bg);
+    color: var(--input-text);
+}
+
 /* Results Section Styling */
 .results-section {
     margin-top: 2rem;
