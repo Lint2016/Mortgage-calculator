@@ -1,146 +1,63 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--bootstrap link-->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-
-    <style>
-        /* Custom styling for responsiveness */
-
-        body{
-        
-          margin: 0;
-        padding: 0;
-        width: 100%;
-        height: 100vh;
-        background-color: rgba(0, 0, 0, 0.5);
-        background-size: cover;
-        background-position: center;
-        transition: background-image 0.5s ease-in-out;
-        
-        }
-
-    
-        
-     
-        #homeValue {
-    color: white;
-    font-weight: bold;
-}
-
-
-#downPayment {
-    color: white;
-    font-weight: bold;
-    font-size: 'large';
-}
-
-
-#loanAmount {
-    color: white;
-    font-weight: bold;
-    font-size: 'large';
-}
-
-
-#interestRate{
-    color: white;
-    font-weight: bold;
-    font-size: 'large';
-}
-
-
-#loanDuration{
-    color: white;
-    font-weight: bold;
-    font-size: 'large';
-}
-       
-
-        .custom-form {
-          max-width: 600px;
-          margin: 0 auto;
-          padding: 20px;
-        }
-        
-        .form-label {
-        color: #fff; /* Text color */
-        font-size: 16px; /* Font size */
-        font-weight: bold; /* Font weight */
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5); /* Text shadow */
-        /* Additional styling as needed */
-    }
-
-        @media screen and (max-width: 992px) {
-          .custom-form {
-            max-width: 400px;
-          }
-        }
-        
-        @media screen and (max-width: 600px) {
-          .custom-form {
-            max-width: 300px;
-          }
-        }
-
-  
-
-        </style>
-
-    <!-- Compiled and minified JavaScript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-    
-
-    <title>Mortgage calculator</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="shortcut icon" href="MortgagePictures/mortgagepic.png" type="image/x-icon">
+    <title>Mortgage Calculator</title>
 </head>
-<body class="silver" >
-    <div class="container shadow rounded-3 p-3 background-color: rgba(255, 0, 0, 0.5) my-5">
-        <h1 class="display-1 text-center" style="font-weight: bolder;">Mortgage calculator</h1>
-        <form id="mortgage">
-
-<main class="row mx-5">
-    <div class="input-field" >
-    <input type="number"  class="autocomplete" id="homeValue">
-     <label style="font-size: 22px; font-weight: bold; color:white;">Home  Value</label>  
+<body>
+    <!-- Dark mode toggle -->
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider"></div>
+        </label>
     </div>
 
-    <div class="input-field">
-        <input type="number"   class="autocomplete" id="downPayment">
-        <label  style="font-size: 24px; font-weight: bold; color: white;">Down Payment</label>
-        </div>
-
-        <div class="input-field">
-            <input type="number"   class="autocomplete" id="loanAmount"   readonly  placeholder="loan Amount"  >
-            <label style="font-size: 24px; font-weight: bold; color: white;">Loan  Amount</label>
-            </div>
-
-            <div class="input-field">
-                <input type="text"   class="autocomplete" id="interestRate">
-                <label style="font-size: 24px; font-weight: bold; color: white;">Interest rate</label>
+    <div class="container glass-effect">
+        <h1>Mortgage Calculator</h1>
+        <form id="mortgage">
+            <main class="row">
+                <div class="input-field">
+                    <input type="number" id="homeValue" required>
+                    <label for="homeValue">Home Value</label>
                 </div>
 
-            <div class="input-field">
-                <input type="number"   class="autocomplete" id="loanDuration">
-                <label style="font-size: 24px; font-weight: bold; color: white;">Loan  Duration (years)</label>
+                <div class="input-field">
+                    <input type="number" id="downPayment" required>
+                    <label for="downPayment">Down Payment</label>
                 </div>
-                
-</main>
-<footer class="row-cols-1 align-items-center m-5">
-    <button class="btn btn-large rounded-pill  " type="submit">Calculate</button>
 
-    <button class="btn btn-large rounded-pill blue mt-5" type="button">
-        <b style="text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);">
-            Mon.Payment: <span id="monthlyPayment"></span>
-        </b>
-    </button>
+                <div class="input-field">
+                    <input type="number" id="loanAmount" readonly>
+                    <label for="loanAmount">Loan Amount</label>
+                </div>
 
-</footer>
+                <div class="input-field">
+                    <input type="text" id="interestRate" required>
+                    <label for="interestRate">Interest Rate (%)</label>
+                </div>
+
+                <div class="input-field">
+                    <input type="number" id="loanDuration" required>
+                    <label for="loanDuration">Loan Duration (years)</label>
+                </div>
+            </main>
+
+            <footer class="text-center">
+                <button class="btn calculate-btn" type="submit">Calculate</button>
+                <button class="btn blue result-btn" type="button">
+                    Monthly Payment: <span id="monthlyPayment"></span>
+                </button>
+            </footer>
         </form>
     </div>
+    
     <script src="mortgage.js"></script>
 </body>
 </html>
