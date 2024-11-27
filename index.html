@@ -47,6 +47,11 @@
                     <input type="number" id="loanDuration" required>
                     <label for="loanDuration">Loan Duration (years)</label>
                 </div>
+
+                <div class="input-field">
+                    <input type="number" id="extraPayment" placeholder="Optional">
+                    <label for="extraPayment">Extra Monthly Payment</label>
+                </div>
             </main>
 
             <footer class="text-center">
@@ -56,8 +61,56 @@
                 </button>
             </footer>
         </form>
+
+        <!-- Results Section -->
+        <div class="results-section" style="display: none;">
+            <h2>Loan Summary</h2>
+            <div class="summary-grid">
+                <div class="summary-item">
+                    <h3>Total Payment</h3>
+                    <p id="totalPayment">ZAR 0</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Total Interest</h3>
+                    <p id="totalInterest">ZAR 0</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Payoff Date</h3>
+                    <p id="payoffDate">-</p>
+                </div>
+                <div class="summary-item">
+                    <h3>Interest Savings</h3>
+                    <p id="interestSavings">ZAR 0</p>
+                </div>
+            </div>
+
+            <!-- Amortization Schedule -->
+            <div class="amortization-section">
+                <h2>Amortization Schedule</h2>
+                <div class="schedule-controls">
+                    <button class="btn schedule-btn" onclick="toggleSchedule()">Show Schedule</button>
+                    <button class="btn download-btn" onclick="downloadSchedule()">Download PDF</button>
+                </div>
+                <div class="schedule-table" style="display: none;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Payment #</th>
+                                <th>Payment</th>
+                                <th>Principal</th>
+                                <th>Interest</th>
+                                <th>Remaining Balance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="amortizationBody">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="mortgage.js"></script>
 </body>
 </html>
