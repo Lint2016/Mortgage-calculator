@@ -394,3 +394,24 @@ tr:hover {
     color: #ff0000;
     text-align: center;
 }
+
+/* Copyright Footer */
+.copyright {
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+    background: var(--schedule-bg);
+    backdrop-filter: blur(10px);
+}
+
+.copyright p {
+    color: var(--table-text);
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+[data-theme="dark"] .copyright p {
+    color: var(--text-color);
+}
