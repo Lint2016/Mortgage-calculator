@@ -13,7 +13,9 @@
     --label-bg: rgba(255, 255, 255, 0.85);
     --label-color: #333;
     --summary-text: #003366;
-    --table-text: #ffffff;
+    --table-text: #003366;
+    --input-text: #333333;
+    --schedule-bg: rgba(255, 255, 255, 0.95);
 }
 
 [data-theme="dark"] {
@@ -29,6 +31,8 @@
     --label-color: #f8f9fa;
     --summary-text: #ffffff;
     --table-text: #f8f9fa;
+    --input-text: #ffffff;
+    --schedule-bg: rgba(33, 37, 41, 0.95);
 }
 
 body {
@@ -137,13 +141,22 @@ h1 {
 
 .input-field input {
     width: 100%;
-    padding: 12px;
-    border: 2px solid transparent;
-    border-radius: 10px;
+    padding: 0.75rem;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: var(--border-radius);
     background: var(--input-bg);
-    color: var(--text-color);
+    color: var(--input-text);
     font-size: 1rem;
     transition: var(--transition);
+    font-weight: 500;
+}
+
+.input-field input::placeholder {
+    color: #666;
+}
+
+[data-theme="dark"] .input-field input::placeholder {
+    color: #adb5bd;
 }
 
 .input-field input:focus {
@@ -272,30 +285,34 @@ h1 {
     padding: 0.5rem 1rem;
 }
 
-.schedule-table {
-    margin-top: 1rem;
-    overflow-x: auto;
-}
-
-table {
+.amortization-table {
     width: 100%;
     border-collapse: collapse;
-    background: var(--input-bg);
+    background: var(--schedule-bg);
     border-radius: var(--border-radius);
     overflow: hidden;
+    margin-top: 1rem;
 }
 
 th, td {
     padding: 1rem;
     text-align: left;
     color: var(--table-text);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    text-shadow: none;
+}
+
+[data-theme="dark"] th,
+[data-theme="dark"] td {
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 th {
     background: var(--primary-color);
+    color: #ffffff;
     font-weight: 600;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 tr:hover {
